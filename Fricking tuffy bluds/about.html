@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me • Battle Academia Briar</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Bubbly", sans-serif;
+}
+    :root {
+        --navy: #263c72;
+        --navy-dark: #17264d;
+        --red: #9f2540;
+        --gold: #d9b34f;
+        --paper: #fffdf6;
+        --text: #35405b;
+        --muted: #737d92;
+        --border: #d9d1b8;
+        --shadow: rgba(32, 48, 91, .15);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Super Shiny", "Nunito", sans-serif;
+        color: var(--text);
+        background:
+            linear-gradient(rgba(248,245,234,.78), rgba(248,245,234,.78)),
+            url("https://wiki.leagueoflegends.com/en-us/images/thumb/Summoner%27s_Rift_map_s14.png/1200px-Summoner%27s_Rift_map_s14.png?172d7");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    button, input, textarea, select {
+        font-family: inherit;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .topbar {
+        height: 58px;
+        background: linear-gradient(90deg, var(--navy-dark), var(--navy));
+        border-bottom: 2px solid var(--gold);
+        color: white;
+        box-shadow: 0 4px 18px rgba(24,37,70,.2);
+    }
+
+    .topbar-inner {
+        width: min(980px, calc(100% - 32px));
+        height: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brand {
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .brand span {
+        opacity: .75;
+        font-weight: 500;
+    }
+
+    .back-button {
+        padding: 8px 12px;
+        border: 1px solid rgba(255,255,255,.3);
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        transition: .2s;
+    }
+
+    .back-button:hover {
+        background: rgba(255,255,255,.12);
+    }
+
+    .page {
+        width: min(980px, calc(100% - 32px));
+        margin: 28px auto 60px;
+    }
+
+    .hero {
+        text-align: center;
+        margin-bottom: 18px;
+    }
+
+    .hero img {
+        width: 390px;
+        max-width: 100%;
+        height: 165px;
+        display: block;
+        margin: auto;
+        object-fit: cover;
+        object-position: center 28%;
+        border-radius: 20px;
+        border: 4px solid var(--paper);
+        outline: 1px solid var(--gold);
+        box-shadow: 0 14px 32px rgba(37,52,95,.2);
+    }
+
+    .crest {
+        display: inline-block;
+        margin-top: 9px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--navy);
+        color: #fff;
+        border: 1px solid var(--gold);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .8px;
+    }
+
+    .hero p {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+    }
+
+    .about-page {
+        padding: 15px;
+        background: rgba(255,255,255,.95);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: 0 10px 35px var(--shadow);
+    }
+
+    .section-title {
+        margin: 3px 4px 15px;
+        color: var(--navy);
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+    }
+
+    .about-card {
+        min-height: 310px;
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        background: linear-gradient(135deg, #fff, #f8f4e8);
+    }
+
+    .about-card.dark {
+        color: #fff;
+        background: linear-gradient(145deg, #12172b, #1d2d59);
+        border-color: #2f4277;
+    }
+
+    .about-card h2 {
+        margin: 0 0 14px;
+        color: var(--navy);
+        font-size: 27px;
+    }
+
+    .about-card.dark h2 {
+        color: #fff;
+    }
+
+    .about-card p,
+    .about-card li {
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    .about-card p {
+        margin: 0 0 5px;
+    }
+
+    .about-card ul {
+        padding-left: 19px;
+        margin: 7px 0 0;
+    }
+
+    .about-card li {
+        margin: 3px 0;
+    }
+
+    .names-card {
+        margin-top: 13px;
+        padding: 19px 20px;
+        border: 1px solid #2f4277;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #182851, #2f4b86);
+        color: #fff;
+    }
+
+    .names-label {
+        color: var(--gold);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: .8px;
+    }
+
+    .names {
+        margin-top: 5px;
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+    .names-info {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .discord-link {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 8px 13px;
+        border-radius: 10px;
+        background: var(--red);
+        color: white;
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    @media (max-width: 760px) {
+        .topbar-inner,
+        .page {
+            width: min(100% - 20px, 620px);
+        }
+
+        .brand span {
+            display: none;
+        }
+
+        .about-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-note {
+            flex-direction: column;
+            gap: 3px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <div class="brand">♡ ENVIS CORNER!!! <span>/ about me</span></div>
+        <a class="back-button" href="briar_battle_academia_home.html">← back home</a>
+    </div>
+</header>
+
+<div class="page">
+
+    <section class="hero">
+        <img
+            src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Briar_20.jpg"
+            alt="Battle Academia Briar">
+
+        <div class="crest">ENVI!! ACADEMIA • STUDENT PROFILE</div>
+
+        <p>personal page • GOAT TINGS</p>
+    </section>
+
+    <section class="about-page">
+
+        <div class="section-title">about me</div>
+
+        <div class="about-grid">
+
+            <article class="about-card">
+                <h2>A Few things abt me</h2>
+
+                <p>I like playing games</p>
+                <p>I like talking to people</p>
+                <p>kinda boring cuz sometimes idk how to respond</p>
+                <p>I respond very quickly to dms!</p>
+                <p>Im pretty loud</p>
+                <p>I speak filo/eng</p>
+            </article>
+
+            <article class="about-card dark">
+                <h2>My Interests!</h2>
+
+                <ul>
+                    <li>Tokyo ghoul/anime in general</li>
+                    <li>Val, league, roblox (vbl or MRT)</li>
+                    <li>Zenless Zone Zero, wuthering waves</li>
+                    <li>Cooking or food in general XD</li>
+                    <li>traveling around/going out w Friends</li>
+                </ul>
+
+                <h2 style="margin-top:22px;">Favorite AnimeS</h2>
+
+                <ul>
+                    <li>Tokyo Ghoul!!!</li>
+                    <li>One Piece</li>
+                    <li>My Teen Romantic Comedy SNAFU</li>
+                    <li>From Me To You</li>
+                    <li>The Misfit of Demon King Academy</li>
+                    <li>Tensura</li>
+                    <li>Horimiya</li>
+                    <li>Sword Art Online</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <article class="names-card">
+            <div class="names-label">NAMES I'VE GONE BY</div>
+            <div class="names">strawbss, yuhh, 3ver</div>
+
+            <div class="names-info">
+                Add me on Discord<br>
+                warstoonasty__
+            </div>
+
+            <a
+                class="discord-link"
+                href="https://discord.com/users/1273091836529086642"
+                target="_blank"
+                rel="noopener noreferrer">
+                add me on Discord ↗
+            </a>
+        </article>
+
+
+
+    </section>
+</div>
+
+</body>
+</html>

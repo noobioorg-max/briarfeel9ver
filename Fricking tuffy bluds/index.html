@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Battle Academia Briar</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Bubbly", sans-serif;
+}
+
+    :root {
+        --navy: #263c72;
+        --navy-dark: #17264d;
+        --blue: #6387c5;
+        --red: #9f2540;
+        --gold: #d9b34f;
+        --paper: #fffdf6;
+        --text: #35405b;
+        --muted: #7c8497;
+        --border: #d9d1b8;
+        --shadow: rgba(32, 48, 91, 0.14);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+       body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Nunito", sans-serif;
+        color: var(--text);
+
+        background-image:
+            linear-gradient(rgba(248, 245, 234, .78), rgba(248, 245, 234, .78)),
+            url("https://wiki.leagueoflegends.com/en-us/images/thumb/Summoner%27s_Rift_map_s14.png/1200px-Summoner%27s_Rift_map_s14.png?172d7");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /* TOP BAR */
+
+    .topbar {
+        height: 58px;
+        background: linear-gradient(90deg, var(--navy-dark), var(--navy));
+        border-bottom: 2px solid var(--gold);
+        box-shadow: 0 4px 18px rgba(24, 37, 70, .20);
+        color: #fff;
+    }
+
+    .topbar-inner {
+        width: min(980px, calc(100% - 32px));
+        height: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .brand {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: .2px;
+    }
+
+    .brand span {
+        opacity: .72;
+        font-weight: 500;
+    }
+
+    .top-icons {
+        display: flex;
+        gap: 7px;
+    }
+
+    .circle-btn {
+        width: 27px;
+        height: 27px;
+        border: 1px solid rgba(255,255,255,.35);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+    }
+
+    /* PAGE */
+
+    .page {
+        width: min(980px, calc(100% - 32px));
+        margin: 24px auto 55px;
+    }
+
+    .hero {
+        text-align: center;
+        margin-bottom: 18px;
+    }
+
+    .hero-image {
+        width: 390px;
+        max-width: 100%;
+        height: 155px;
+        display: block;
+        margin: auto;
+        object-fit: cover;
+        object-position: center 30%;
+        border-radius: 20px;
+        border: 4px solid var(--paper);
+        outline: 1px solid var(--gold);
+        box-shadow: 0 14px 32px rgba(37,52,95,.20);
+    }
+
+    .crest {
+        display: inline-block;
+        margin-top: 9px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--navy);
+        color: #fff;
+        border: 1px solid var(--gold);
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: .7px;
+    }
+
+    .hero-subtitle {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 11px;
+    }
+
+    /* TWO COLUMNS */
+
+    .layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+    }
+
+    /* LEFT SIDE */
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+    }
+
+    .card {
+        background: rgba(255,255,255,.94);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: 0 8px 25px var(--shadow);
+    }
+
+    .profile {
+        padding: 8px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .profile::after {
+        content: "★";
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 25px;
+        height: 25px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #fff;
+        font-size: 10px;
+        box-shadow: 0 3px 8px rgba(0,0,0,.08);
+    }
+
+    .profile-image {
+        width: 100%;
+        height: 190px;
+        border-radius: 14px;
+        display: block;
+        object-fit: cover;
+        object-position: center 18%;
+    }
+
+    .profile-info {
+        padding: 10px 5px 5px;
+        text-align: center;
+    }
+
+    .profile-name {
+        color: var(--navy);
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .profile-sub {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 9px;
+    }
+
+    /* SPOTIFY */
+
+    .music {
+        padding: 9px;
+    }
+
+    .music-heading {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 8px;
+    }
+
+    .music-cover {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    .music-copy {
+        min-width: 0;
+    }
+
+    .music-title {
+        color: var(--navy);
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+    .music-sub {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 8px;
+    }
+
+    .spotify-frame {
+        width: 100%;
+        height: 80px;
+        display: block;
+        border: 0;
+        border-radius: 12px;
+    }
+
+    .spotify-open {
+        display: inline-block;
+        margin-top: 6px;
+        color: var(--navy);
+        font-size: 8px;
+        font-weight: 800;
+    }
+
+    .spotify-open:hover {
+        color: var(--red);
+    }
+
+    /* MAIN */
+
+    .content {
+        min-width: 0;
+        padding: 13px;
+        background: rgba(255,255,255,.95);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: 0 10px 35px rgba(35, 50, 91, .11);
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 2px 4px 10px;
+        color: var(--navy);
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .section-title span {
+        color: var(--gold);
+    }
+
+    .intro {
+        margin: 0 4px 13px;
+        color: #687186;
+        font-size: 10px;
+        line-height: 1.7;
+    }
+
+    .banner {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        border: 1px solid #b7bfd0;
+        border-radius: 15px;
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,.7);
+    }
+
+    .banner img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center 29%;
+    }
+
+    .banner::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(17,29,59,.02),
+            rgba(17,29,59,.48)
+        );
+    }
+
+    .banner-copy {
+        position: absolute;
+        left: 17px;
+        bottom: 15px;
+        z-index: 1;
+        color: #fff;
+    }
+
+    .banner-copy h1 {
+        margin: 0;
+        font-size: 21px;
+        letter-spacing: .9px;
+        text-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    .banner-copy p {
+        margin: 3px 0 0;
+        font-size: 8px;
+    }
+
+    .dossier {
+        margin-top: 11px;
+        padding: 12px 13px;
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--gold);
+        border-radius: 14px;
+        background: linear-gradient(135deg, #fffdf5, #f4f0df);
+    }
+
+    .dossier-label {
+        color: var(--red);
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: .8px;
+    }
+
+    .dossier-title {
+        margin-top: 3px;
+        color: var(--navy);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .dossier-copy {
+        margin-top: 4px;
+        color: #697186;
+        font-size: 9px;
+        line-height: 1.65;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+        margin-top: 11px;
+    }
+
+    .stat {
+        padding: 10px;
+        text-align: center;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+    }
+
+    .stat-icon {
+        color: var(--gold);
+        font-size: 14px;
+    }
+
+    .stat-title {
+        margin-top: 3px;
+        color: var(--navy);
+        font-size: 8px;
+        font-weight: 800;
+    }
+
+    .stat-sub {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 7px;
+    }
+
+    .gallery-title {
+        margin-top: 17px;
+        color: var(--navy);
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+        margin-top: 8px;
+    }
+
+    .gallery-card {
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+    }
+
+    .gallery-card img {
+        width: 100%;
+        height: 115px;
+        display: block;
+        object-fit: cover;
+        object-position: center 30%;
+        transition: transform .25s;
+    }
+
+    .gallery-card:hover img {
+        transform: scale(1.04);
+    }
+
+    .gallery-info {
+        padding: 7px 8px 8px;
+    }
+
+    .gallery-name {
+        color: var(--navy);
+        font-size: 9px;
+        font-weight: 800;
+    }
+
+    .gallery-author {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 7px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 760px) {
+        .topbar-inner,
+        .page {
+            width: min(100% - 20px, 620px);
+        }
+
+        .topbar .brand span {
+            display: none;
+        }
+
+        .layout {
+            grid-template-columns: 1fr;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-image {
+            width: 90px;
+            height: 90px;
+        }
+
+        .profile-info {
+            text-align: left;
+        }
+
+        .gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    .about-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 13px;
+
+    background: #263c72;
+    color: white;
+
+    border: 1px solid #d9b34f;
+    border-radius: 10px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    transition: 0.2s;
+}
+
+.about-button span {
+    color: #d9b34f;
+}
+
+.about-button b {
+    margin-left: 4px;
+    color: rgba(255,255,255,.75);
+}
+
+.about-button:hover {
+    background: #9f2540;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <div class="brand">♡ ENVIS CORNER!!! <span>/ Briar Academy</span></div>
+
+        <div class="top-icons">
+            <a class="circle-btn" href="https://discord.com/users/1273091836529086642" target="_blank" rel="noopener noreferrer" aria-label="Discord">✦</a>
+            <a class="circle-btn" href="https://www.tiktok.com/@warstoonasty__" target="_blank" rel="noopener noreferrer" aria-label="TikTok">★</a>
+            <a class="circle-btn" href="https://www.secretmessage.link/secret/6ab0102512a0c/" target="_blank" rel="noopener noreferrer" aria-label="Secret message">✉</a>
+        </div>
+        </div>
+    </div>
+</header>
+
+<div class="page">
+
+    <section class="hero">
+        <img
+            class="hero-image"
+            src="https://pbs.twimg.com/media/Gwjh15UWsAACUbP?format=webp&name=medium"
+            alt="Battle Academia Briar">
+
+        <div class="crest">
+            BRIAR ACADEMIA • NEEKO :FLUSHED:
+        </div>
+
+        <div class="hero-subtitle">
+            a little TUFFY corner for the hungriest student in class ♡
+        </div>
+    </section>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <section class="card profile">
+                <img
+                    class="profile-image"
+                    src="https://pbs.twimg.com/media/G-Rwc72asAAC2V2?format=webp&name=medium"
+                    alt="Battle Academia Briar">
+
+                <div class="profile-info">
+                    <div class="profile-name">briarfeetl9ver#hiro</div>
+                    <div class="profile-sub">High wr briar otp!!</div>
+                </div>
+            </section>
+
+            <section class="card music">
+                <div class="music-heading">
+                    <img
+                        class="music-cover"
+                        src="https://storage.ko-fi.com/cdn/useruploads/display/d9b09582-1507-48c9-95f3-974f8609af2d_imagen_2026-02-17_034704119.png"
+                        alt="Battle Academia Briar">
+
+                    <div class="music-copy">
+                        <div class="music-title">now playing</div>
+                        <div class="music-sub">Spotify • Briar corner</div>
+                    </div>
+                </div>
+
+                <iframe
+                    class="spotify-frame"
+                    src="https://open.spotify.com/embed/track/1r3Peq4Sb0fWvyiwf8odV1?utm_source=generator"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    title="Spotify track">
+                </iframe>
+
+                <a
+                    class="spotify-open"
+                    href="https://open.spotify.com/track/1r3Peq4Sb0fWvyiwf8odV1"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    open in Spotify ↗
+                </a>
+            </section>
+
+        </aside>
+
+        <main class="content">
+
+            <div class="section-title">
+                <span>✦</span>
+                main
+            </div>
+
+            <p class="intro">
+                Hi pls play with me i need to get to emerald plsplsplspls
+            </p>
+
+<section class="banner">
+    <img
+        src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Briar_20.jpg"
+        alt="Battle Academia Briar splash art">
+
+    <div class="banner-copy">
+        <h1>BATTLE ACADEMIA BRIAR</h1>
+        <p>I love briar if you couldnt tell • I hate you all teemo mains</p>
+
+        <a class="about-button" href="about.html">
+            <span>✦</span>
+            about me
+            <b>↗</b>
+        </a>
+    </div>
+</section>
+            <section class="dossier">
+                <div class="dossier-label">STUDENT DOSSIER</div>
+                <div class="dossier-title">Briar, the Restrained Hunger</div>
+                <div class="dossier-copy">
+                    HI! Im Envi, i like playing games, watching movies, listening to music, and playing sports! 
+                    press the email looking button to make an anonymous msg...
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stat">
+                    <div class="stat-icon">✦</div>
+                    <div class="stat-title">CLASS</div>
+                    <div class="stat-sub">GOD WEAPON STUDIES</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">★</div>
+                    <div class="stat-title">CLUB</div>
+                    <div class="stat-sub">VOLLEYBALL</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">✎</div>
+                    <div class="stat-title">HOBBY</div>
+                    <div class="stat-sub">GAMING!!</div>
+                </div>
+            </section>
+
+            <div class="gallery-title">♡ academy photo log</div>
+
+            <section class="gallery">
+
+                <article class="gallery-card">
+                    <img
+                        src="https://preview.redd.it/battle-academia-briar-v0-s1e1zq4k9jcg1.jpeg?width=640&crop=smart&auto=webp&s=38d89f0895c99b6452cade33a0074f26799ac880"
+                        alt="Battle Academia Briar">
+                    <div class="gallery-info">
+                        <div class="gallery-name">Briar lwk hot</div>
+                        <div class="gallery-author">What dat mouth do</div>
+                    </div>
+                </article>
+
+                <article class="gallery-card">
+                    <img
+                        src="https://preview.redd.it/battle-academia-briar-by-not-estyy-v0-x8tw7c7vhqcg1.jpeg?width=640&crop=smart&auto=webp&s=340734a4775f4376d9dce435804430bfd1254c91"
+                        alt="Battle Academia Briar">
+                    <div class="gallery-info">
+                        <div class="gallery-name">AYO????</div>
+                        <div class="gallery-author">Ey she look hungry😳</div>
+                    </div>
+                </article>
+
+                <article class="gallery-card">
+                    <img
+                        src="https://pbs.twimg.com/amplify_video_thumb/2009199064361951232/img/TvigNDUeXdaYerdz.jpg"
+                        alt="Battle Academia Briar">
+                    <div class="gallery-info">
+                        <div class="gallery-name">Aye she lwk cute</div>
+                        <div class="gallery-author">She oneshots every squishy itg</div>
+                    </div>
+                </article>
+
+            </section>
+
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
